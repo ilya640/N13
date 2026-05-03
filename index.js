@@ -1,35 +1,28 @@
-const ObjStorageFunc = () => {
-    const storage = {};
+function ObjStorageFunc() {
+    this.storage = {};
+}
 
-    const addValue = (key, value) => {
-        storage[key] = value;
-    };
-
-    const getValue = (key) => {
-        return storage.hasOwnProperty(key) ? storage[key] : undefined;
-    };
-
-    const deleteValue = (key) => {
-        if (storage.hasOwnProperty(key)) {
-            delete storage[key];
-            return true;
-        }
-        return false;
-    };
-
-    const getKeys = () => {
-        return Object.keys(storage);
-    };
-
-    return {
-        addValue,
-        getValue,
-        deleteValue,
-        getKeys,
-    };
+ObjStorageFunc.prototype.addValue = function(key, value) {
+    this.storage[key] = value;
 };
 
-const drinkStorage = ObjStorageFunc();
+ObjStorageFunc.prototype.getValue = function(key) {
+    return this.storage.hasOwnProperty(key) ? this.storage[key] : undefined;
+};
+
+ObjStorageFunc.prototype.deleteValue = function(key) {
+    if (this.storage.hasOwnProperty(key)) {
+        delete this.storage[key];
+        return true;
+    }
+    return false;
+};
+
+ObjStorageFunc.prototype.getKeys = function() {
+    return Object.keys(this.storage);
+};
+
+const drinkStorage = new ObjStorageFunc();
 
 const infoDiv = document.getElementById("info");
 
